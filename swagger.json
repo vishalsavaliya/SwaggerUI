@@ -1,0 +1,777 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a incrementum-master",
+    "version": "1.0.0",
+    "title": "Incrementum Master"
+  },
+  "host": "35.192.154.144",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "card"
+    },
+    {
+      "name": "algorithm"
+    },
+    {
+      "name": "dbtbl"
+    },
+    {
+      "name": "group"
+    },
+    {
+      "name": "logout"
+    },
+    {
+      "name": "match"
+    },
+    {
+      "name": "response"
+    },
+    {
+      "name": "signin"
+    },
+    {
+      "name": "user"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/cards": {
+      "get": {
+        "tags": [
+          "card"
+        ],
+        "operationId": "GetCard",
+        "description": "<p><b>Cards</b></p><br><p>group id and card id to use for filtering.</p>",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "groupId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cardId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "422": {
+            "description": "group id not supported with card id"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "card"
+        ],
+        "operationId": "PostCard",
+        "description": "<p><b>Cards</b></p><p>Create New Cards Using This Api</p>",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "question",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "answer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "hint",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "group",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "algorithm",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/cards/{id}": {
+      "put": {
+        "tags": [
+          "card"
+        ],
+        "operationId": "addCardsId",
+        "description": "<p><b>Cards</b></p><br><p>Update Cards Detail.</p><br><p><b>Parameters:</b> question, answer, hint, userId, groupId, algorithmId, id</p>",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "question",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "answer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "hint",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "groupId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "algorithmId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "card"
+        ],
+        "operationId": "deleteCard",
+        "description": "Using this api delete cards.",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "card id to delete",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/algorithms": {
+      "get": {
+        "tags": [
+          "algorithm"
+        ],
+        "description": "<p><b>Algorithms</b></p><p>Get All Algorithms Details</p>",
+        "operationId": "GetAlgorithms",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "responses": {
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/dbtbl": {
+      "get": {
+        "tags": [
+          "dbtbl"
+        ],
+        "operationId": "GetDbtbl",
+        "description": "<p><b>Database Tables</b></p><p>Using This Api Get All Tables Information.</p>",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "responses": {
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/group": {
+      "get": {
+        "tags": [
+          "group"
+        ],
+        "operationId": "GetGroup",
+        "description": "<p><b>Groups</b></p><p>Get All Groups Details.</p>",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "searchText",
+            "in": "query",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "group"
+        ],
+        "operationId": "PostGroup",
+        "description": "<p><b>Groups</b></p><br><p>Create New Groups Using This Api.</p>",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "groupName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/group/{id}": {
+      "delete": {
+        "tags": [
+          "group"
+        ],
+        "operationId": "deleteGroup",
+        "description": "<p><b>Groups</b></p><br><p>Delete Group Using This Api.</p>",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id to delete",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "group"
+        ],
+        "operationId": "addGroup",
+        "description": "<p><b>Group</b></p><br><p>Update Group Details Using This Api. </p>",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "tags": [
+          "logout"
+        ],
+        "operationId": "GetLogout",
+        "description": "<p><b>Logout</b></p><p>Logout From System Using This Api.</p>",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/match": {
+      "get": {
+        "tags": [
+          "match"
+        ],
+        "operationId": "GetMatch",
+        "description": "<p><b>Parameters:</b></p><br><p><b>Card id:</b> primary key of the card</p><br><p><b>Response:</b> card string response</p>",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Card id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Response",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/match"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/response": {
+      "post": {
+        "tags": [
+          "response"
+        ],
+        "operationId": "PostResponse",
+        "description": "Create Response Using This Api.",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/responses"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/signin": {
+      "post": {
+        "tags": [
+          "signin"
+        ],
+        "operationId": "PostSignin",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "responses": {
+          "401": {
+            "description": "unauthorized"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/user": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "operationId": "GetUser",
+        "description": "Get User Detail Using This Api.",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "searchText",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "operationId": "PostUser",
+        "description": "Create New User Using This Api.",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/users"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/user/authorized": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "operationId": "GetAuthorized",
+        "description": "Check User Authorized Or Not Using This Api.",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "operationId": "GetUserId",
+        "description": "Get User Detail By User Id Using This Api.",
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "operationId": "deleteUserId",
+        "description": "Delete User Using This Api.",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "operationId": "PutUser",
+        "description": "Update User Detail Using This Api.",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/users"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/user/{id}/password": {
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "operationId": "PutUserP",
+        "description": "Change Password Using This Api.",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "match": {
+      "type": "object",
+      "properties": {
+        "answer": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "match"
+      }
+    },
+    "responses": {
+      "type": "object",
+      "properties": {
+        "cardId": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "score": {
+          "type": "string"
+        },
+        "createdOn": {
+          "type": "string",
+          "format": "dateTime"
+        },
+        "duration": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "responses"
+      }
+    },
+    "users": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "users"
+      }
+    }
+  }
+}
